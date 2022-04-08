@@ -1,0 +1,25 @@
+{% extends 'news/default.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block sidebar %}
+{% include 'news/_sidebar.html' %}
+{% endblock sidebar %}
+{% block main %}
+<div class="media">
+      <div class="media-body">
+        <div class="card width-200px height-50px mt-4">
+        <ul class="list-group list-group-flush">
+              <li class="list-group-item text-light bg-info">
+                <img src="{{ new.image.url }}" alt="" width="50" height="50">
+                {{ new.title }}
+              </li>
+              <li class="list-group-item">{{ new.text }}</li>
+        </ul>
+        </div>
+      </div>
+      <div class="card-footer text-dark bg-light">
+        <div ><strong class="align-right">Категория:</strong><a href="{{ new.category.get_absolute_url }}"> {{ new.category }} </a> <strong>Дата:</strong>  {{ new.created_at|date:'d.m.y' }}</div>
+      </div>
+</div>
+{% endblock main %}
