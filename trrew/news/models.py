@@ -7,7 +7,7 @@ class News(models.Model):
     text = models.TextField(blank=True, verbose_name='Текст статьи')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Время создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Время редактирования')
-    image = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото', blank=True)
+    image = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name='Фото', blank=True, null=True)
     is_published = models.BooleanField(default=True, verbose_name='Метка публикации')
     category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория')
 
@@ -15,7 +15,7 @@ class News(models.Model):
         return f'{self.title}'
 
     def get_absolute_url(self):
-        return reverse('view_news', kwargs={'news_id': self.pk})
+        return reverse('view_news', kwargs={'pk': self.pk})
 
     class Meta:
         verbose_name = 'новость'

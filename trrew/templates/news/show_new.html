@@ -11,15 +11,19 @@
         <div class="card width-200px height-50px mt-4">
         <ul class="list-group list-group-flush">
               <li class="list-group-item text-light bg-info">
-                <img src="{{ new.image.url }}" alt="" width="50" height="50">
+                 {% if new.image %}
+                  <img src="{{ new.image.url }}" alt="" width="50" height="50">
+                  {% else %}
+                  <img src="/media/photos/2022/04/09/Path_of_Exile_Gallery_Image.jpg" alt="" width="50" height="50">
+                  {% endif %}
                 {{ new.title }}
               </li>
               <li class="list-group-item">{{ new.text }}</li>
+                <li class="list-group-item text-dark bg-light">
+                  <strong>Категория:</strong><a href="{{ new.category.get_absolute_url }}"> {{ new.category }} </a> <strong>Дата:</strong>  {{ new.created_at|date:'d.m.y' }}
+                </li>
         </ul>
         </div>
-      </div>
-      <div class="card-footer text-dark bg-light">
-        <div ><strong class="align-right">Категория:</strong><a href="{{ new.category.get_absolute_url }}"> {{ new.category }} </a> <strong>Дата:</strong>  {{ new.created_at|date:'d.m.y' }}</div>
       </div>
 </div>
 {% endblock main %}
